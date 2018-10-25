@@ -26,6 +26,10 @@ public class FeldSortierung {
 					minIndex=j;
 				}
 			}
+			int temp=array[minIndex];
+			array[minIndex]=array[i];
+			array[i]=temp;
+			
 		}
 		
 	}
