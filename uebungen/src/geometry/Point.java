@@ -27,14 +27,14 @@ public class Point {
 		y = Help.INPUT.nextDouble();
 	}
 
-	public void move(double xDelta, double yDelta) {
-		x = x + xDelta;
-		y = y + yDelta;
+	public void move(double x, double y) {
+		x = x + x;
+		y = y + y;
 	}
 
 	public Point createNewMoved(double xDelta, double yDelta) {
-		double newX = x + xDelta;
-		double newY = y + yDelta;
+		double newX = this.x + xDelta;
+		double newY = this.y + yDelta;
 
 		return new Point(newX, newY);
 	}
