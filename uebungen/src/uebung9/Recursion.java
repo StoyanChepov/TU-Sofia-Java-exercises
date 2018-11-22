@@ -37,7 +37,6 @@ public class Recursion {
 		} else {
 
 			return n * factorialRecursive(n - 1);
-
 		}
 
 	}
@@ -50,9 +49,11 @@ public class Recursion {
 
 		while (n > 1) {
 
-			secondNumber = firstNumber + secondNumber;
+			secondNumber = firstNumber + secondNumber;//2
+			System.out.printf("second number ist "+secondNumber+"\n");
 
-			firstNumber = secondNumber - firstNumber;
+			firstNumber = secondNumber - firstNumber;//1
+			System.out.printf("first number ist "+firstNumber+"\n");
 
 			n--;
 
