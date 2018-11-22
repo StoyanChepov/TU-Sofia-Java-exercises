@@ -1,5 +1,4 @@
 package geometry;
-import java.lang.*;
 
 public class Triangle {
 	private Point[] points = new Point[3];
@@ -98,7 +97,7 @@ public class Triangle {
 
 	public void print() {
 		
-		System.out.format("triangle%s ist %s,\n U=%.2f,\n F=%.2f\n",n, getType(), calculatePerimeter(), calculateArea());
+		System.out.format("triangle ist %s,\n U=%.2f,\n F=%.2f\n", getType(), calculatePerimeter(), calculateArea());
 	}
 
 	public boolean equal(Triangle otherTriangle) {

@@ -18,13 +18,7 @@ public class QuadrangleDemo {
 
 		Point[] points = {
 
-				new Point(2, 2),
-
-				new Point(13, 2),
-
-				new Point(8, 6),
-
-				new Point(4, 6) };
+		new Point(2, 2), new Point(13, 2), new Point(8, 6), new Point(4, 6) };
 
 		Quadrangle quadrangle3 = new Quadrangle(points);
 

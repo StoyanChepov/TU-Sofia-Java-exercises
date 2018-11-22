@@ -16,7 +16,7 @@ public class Quadrangle {
 
 		points[3] = new Point(0, 1);
 
-		calculateSides();
+		calculateSides();//
 
 	}
 
@@ -55,7 +55,7 @@ public class Quadrangle {
 			sides[index] = otherQuadrangle.sides[index];
 
 		}
-
+		calculateSides();
 	}
 
 	private void calculateSides() {
@@ -134,7 +134,7 @@ public class Quadrangle {
 
 		double result4 = points[3].x * points[0].y - points[3].y * points[0].x;
 
-		return Math.abs(result1 + result2 + result3 + result4) / 2;
+		return Math.abs((result1 + result2 + result3 + result4) / 2);
 
 	}
 
@@ -149,17 +149,11 @@ public class Quadrangle {
 		double coefficient4 = Help.calculateLineCoefficient(points[3], points[0]);
 
 		if (Help.equal(coefficient1, coefficient3) && Help.equal(coefficient2, coefficient4)) {
-
 			return "Parallelogramm";
-
 		} else if (Help.equal(coefficient1, coefficient3) || Help.equal(coefficient2, coefficient4)) {
-
 			return "Trapez";
-
 		} else {
-
 			return "gewoehnliches Viereck";
-
 		}
 
 	}
@@ -172,7 +166,7 @@ public class Quadrangle {
 
 	public void print() {
 
-		System.out.format("%s, %s, U=%s, F=%s\n", this, getType(), calculatePerimeter(), calculateArea());
+		System.out.format("%s, %s, U=%.2f, F=%s\n", this, getType(), calculatePerimeter(), calculateArea());
 
 	}
 
