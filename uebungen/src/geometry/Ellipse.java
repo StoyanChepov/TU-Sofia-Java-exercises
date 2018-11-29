@@ -1,81 +1,99 @@
 package geometry;
 
-public class Ellipse {
-	private Point startPoint;
+import javafx.scene.shape.Shape;
+
+public class Ellipse extends GeometricObject {
 	private double a;
 	private double b;
 
 	public Ellipse() {
-		startPoint = new Point(0, 0);
-		this.a = 1;
-		this.b = 1;
+		super("Ellipse", 1, 0);
+		points[0] = new Point(0, 0);
+		a = 1;
+		b = 1;
 	}
 
 	public Ellipse(Point startPoint, double a, double b) {
-		this.startPoint = new Point(startPoint);
+		super("Ellipse", 1, 0);
+		points[0] = new Point(startPoint);
 		this.a = a;
 		this.b = b;
 
 	}
 
 	public Ellipse(Ellipse otherEllipse) {
-		startPoint = new Point(otherEllipse.startPoint);
-		this.a = otherEllipse.a;
-		this.b = otherEllipse.b;
+		super("Ellipse", 1, 0);
+		points[0] = new Point(otherEllipse.points[0]);
+		a = otherEllipse.a;
+		b = otherEllipse.b;
 	}
 
+	@Override
 	public boolean isValid() {
-		return (a > 0 && b > 0);
+		return a > 0 && b > 0;
 
 	}
 
+	@Override
 	public void initialize() {
 		do {
-			System.out.println("Anfangspunkt der Ellipse:");
-			startPoint.initialize();
-			System.out.print("Halbachse a: ");
+			System.out.println("Anfangspunkt:");
+			points[0].initialize();
+			System.out.print("Halbachse");
 			a = Help.INPUT.nextDouble();
-			System.out.print("Halbachse b: ");
+			System.out.print("Halbachse");
 			b = Help.INPUT.nextDouble();
 		} while (!isValid());
 
 	}
 
+	@Override
 	public double calculatePerimeter() {
 		return Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b)));
 
 	}
 
+	@Override
 	public double calculateArea() {
 		return Math.PI * a * b;
 
 	}
 
+	@Override
 	public String getType() {
-		return (a == b) ? "Kreis" : "Ellipse";
+		return (a == b) ? "Quadrat" : "Rechteck";
 
 	}
 
+	@Override
 	public String toString() {
-		int a=(int) (this.a);
-		int b=(int) (this.b);
-		return startPoint + "-[" + a + ", " + b + "]";
+		return points[0] + "-[" + a + "," + b + "]";
 
 	}
 
-	public void print() {
-		double perimeter = calculatePerimeter();
-		System.out.format("%s, %s, U=%.2f, F=%.2f\n", this, getType(), perimeter, calculateArea());
+	@Override
+	public boolean equal(GeometricObject otherGeometricObject) {
+		if (otherGeometricObject instanceof Ellipse) {
+			Ellipse otherEllipse = (Ellipse) otherGeometricObject;
+			boolean sameA = Help.equal(a, otherEllipse.a);
+			boolean sameB = Help.equal(b, otherEllipse.b);
+			boolean sameAReversed = Help.equal(a, otherEllipse.b);
+			boolean sameBReversed = Help.equal(b, otherEllipse.a);
+			return (sameA && sameB) || (sameAReversed && sameBReversed);
+
+		} else {
+			return false;
+		}
 
 	}
 
-	public boolean equal(Ellipse otherEllipse) {
-		boolean sameA = Help.equal(a, otherEllipse.a);
-		boolean sameB = Help.equal(b, otherEllipse.b);
-		boolean sameAReversed = Help.equal(a, otherEllipse.b);
-		boolean sameBReversed = Help.equal(b, otherEllipse.a);
-
-		return (sameA && sameB) || (sameAReversed && sameBReversed);
+	@Override
+	public Shape createShape(int scale) {
+		double scaledCenterX = (points[0].x + a) * scale;
+		double scaledCenterY = (points[0].y + b) * scale;
+		double scaledA = a * scale;
+		double scaledB = b * scale;
+		return new javafx.scene.shape.Ellipse(scaledCenterX, scaledCenterY, scaledA, scaledB);
 	}
 
 }
