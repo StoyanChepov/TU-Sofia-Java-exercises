@@ -1,5 +1,4 @@
 package uebung12;
-
 import java.util.Arrays;
 
 public class ArrayQueue {
